@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판</title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- 태그는 중첩해서 사용이 가능하다. 크기는 %로 주는것이 좋다. 가변성에 대응-->
+    <table border="1" align="center" width="1000px">
+      <tr>
+        <td width="100%" height="50px">
+          <!-- top start -->
+          <table border="1" width="100%" height="100%" bordercolor="green">
+            <tr>
+              <td align="center">top</td>
+            </tr>
+          </table>
+          <!-- top end -->
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <!-- menu start -->
+          <table>
+            <tr>
+              <td width="200px" height="400px">
+                <table border="1" bordercolor="blue" width="100%" height="100%">
+                  <tr valign="top">
+                    <td>
+                      <table>
+                        <tr>
+                          <td><a href="#" style="text-decoration: none;">소개</a></td>
+                        </tr>
+                        <tr>
+                          <td><a href="#">로그인</a></td>
+                        </tr>
+                        <tr>
+                          <td><a href="#">게시판</a></td>
+                        </tr>
+                        <tr>
+                          <td><a href="http://www.google.com">구글</a></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <!-- menu end -->
+              <!-- main start -->
+              <td width="800px" height="400px">
+                <table border="1" bordercolor="blue" width="100%" height="100%">
+                  <td align="center">main</td>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- main  end-->
+        </td>
+      </tr>
+      <tr>
+        <!-- bottom start -->
+        <td width="1000px" height="30px">
+          <table border="1" width="100%" height="100%" bordercolor="red">
+            <tr>
+              <td align="center">bottom</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- bottom end -->
+  </body>
+</html>

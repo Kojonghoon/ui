@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    background-color: yellow;
+}
+
+.parent{ 
+    position: relative;/*포지션 */
+    width: 400px;
+    height: 400px;
+    border: 2px solid red;
+}
+
+.child{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    right: 0px;
+    bottom: 0px;
+    position: absolute;/*포지션 */
+}
+
+/* relative   요소 자기 자신을 기준으로 배치
+absolute   부모(조상) 요소를 기준으로 배치 */

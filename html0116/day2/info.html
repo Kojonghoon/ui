@@ -1,0 +1,67 @@
+<!DOCTYPE html><!-- 선언문 html -->
+<html lang=""ko">
+<head>
+    <meta charset="UTF-8"><!--UTF-8 전세계 표준 포멧-->
+    <!-- explorer에 여러버전 혹시 낮은 버전 동작이 될 때 최신 익스플로러로 렌더링 해줌 -->
+    <!-- edge버전부터 크롬 V8엔진사용 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- viewport가 있어야 모바일 디바이스가 모바일 페이지를 제대로 출력
+        하이브리드 앱 = 네이티브 앱 +웹앱
+        요소=태그=노드
+        1)인라인요소 - 크기없음, 자동줄바꿈 없음<br(break)/>  <br>:리액트안됨
+        2)블록요소 - 자체크기, 자동으로 줄바꿈
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윈도우사이즈</title>
+    <style>
+        .tag{
+            display:inline-block;   /* 컨텐츠를 감싸준다 */
+            background-color: beige;
+            font-size: 48px;
+            padding: 16px;  /* 상하좌우 */ 
+            margin-top: 16px;
+            margin-bottom: 30px;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            border: 2px solid black; /* 두께, 실선, 검정색 */
+        }
+    </style>
+</head>
+<body>
+	<div class="tag">윈도우사이즈</div>  <!-- .+enter -->
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    비교<img src="#">
+    <script>
+        window.addEventListener('resize',()=>{  //arrow Function
+            // window.addEventListener("resize",function(){  //옛날방식
+                //arrow function
+                //모니터의 화면 크기임
+            console.log(
+                'window.screen :${window.screen.width},${window.screen.height}'
+        );
+        //url과 탭(세션아이를 쿠키에 저장함) 전체적인 브라우저 크기임
+            console.log(
+                'window.outer :${window.outerwidth},${window.outerheight}'
+        );
+        console.log(
+            //웹페이지 + 스크롤바
+                // 'window.inner :${window.innerwidth},${window.innerheight}'
+            //스크롤바가 제외된 문서만의 사이즈임
+            'document(문서만) :${document.documentElement.clientWidte},${document.documentElement.clientHeight}'
+        );
+        });//자바람다식지원
+    </script>
+</body>
+</html>

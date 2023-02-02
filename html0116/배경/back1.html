@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경이미지</title>
+    <style>
+        *{
+            border: 1px solid red;
+        }
+        body{
+            /* 스크롤바가 생김 */
+            height: 3000px; 
+        }
+        div{
+            width : 500px;
+            height : 800px;
+            display: inline-block;
+            /* background-color : aquamarine; */
+            /* background-color:  transparent;*/ /* 배경화면 뒤에랑 일치 */
+            background-color:  aquamarine;
+            /* repeat-y : 수직반복*/
+            /* repeat-x : 수평반복*/
+            /* no-repeat : 노반복*/
+            background-repeat: no-repeat;
+            /*  cover: 비율 유지, 요소의 더 넓은 너비에 맞춤*/
+            /*  contain:비율 유지, 요소의 더 짧은 너비에 맞춤*/
+            /* auto : 자동 맞춤*/
+            background-size: auto;
+            background-image : url("../html0116/images/apple_280x280.jpg");
+            /* bottom right : 오른쪽 아래  */
+            /* background-position: center; */
+            /* 스크롤은 되는데 이미지는 멈춰라*/
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis assumenda porro, ab architecto excepturi reiciendis? Alias debitis fuga accusamus labore!
+    </p>
+</body>
+</html>

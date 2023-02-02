@@ -1,0 +1,9 @@
+*{
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+.div{
+    width: 300;
+    height: 600;
+}

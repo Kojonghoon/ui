@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>화살표함수</title>
+    </head>
+    <body>
+    <script type="text/javascript">
+        //1번함수
+        function hap(a1, a2) {  //a1=1, a2=2 -> call by value
+            console.log(a1);
+        }
+        //3번 함수 - 일급할수라 함
+        const hap1 = function(a1,a2){
+            const result = a1+a2;
+            console.log(result);
+            return result;
+        }
+        
+        //화살표 함수
+        const hap2 = (a1,a2)=>{
+            const result = a1+a2;
+            console.log(result);
+            return result;
+        }
+        
+        const hap3 = a1 =>{
+            const result = a1;
+            console.log(result);
+            return result;
+        }
+
+        //insert here  - 화면에 출력해보기
+        hap1(10,20)
+        hap2(20,30)
+        hap3(60,40)
+
+        document.write(hap1(10,20))
+        document.write("<br/>")
+        document.write(hap2(20,30))
+        document.write("<br/>")
+        document.write(hap3(60,40))
+
+        hap()   //undefine - 지변
+        hap(1,2)
+        hap(3)
+
+
+    </script>
+    </body>
+</html>
+
+<!-- 
+    -Arrow Function?
+    : 기존의 익명함수를 좀 더 쓰기 쉽게 축약한 형태임
+    : 내부로 전달되는 파라미터가 하나면 괄호는 생략 가능함
+
+    자바스크립트는 같은 이름의 함수를 중복 정의 못함
+    왜냐면 메소드 오버로딩이 없으니까....
+    결론: 함수의 이름은 무조건 다르게 작명 해야함.
+-->
