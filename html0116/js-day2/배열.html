@@ -19,14 +19,16 @@
         }
       //forEach처리 - 리액트 비중
         fruits.forEach(element => console.log(element));
+        document.write("<br/>")
+
         fruits.forEach((element,index) => console.log(index,element));
+        document.write("<hr/>")
         fruits.forEach((element,index,fruits) => console.log(index,element,fruits));
+        document.write("<hr/>")
+
         fruits.forEach((element,index,fruits) =>{
             document.write(index,element,fruits);
         })
-        document.write("<br/>")
-        document.write("<br/>")
-
     //     fruits.forEach((fruit)=>{
     //     console.log(fruit);
     //     document.write(fruit)

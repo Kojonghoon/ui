@@ -28,7 +28,7 @@ document.querySelector("#title").appendChild(ul)
 
 
 // console.log(xhr.responseText);
-//document는 index.html전체를 받는 객체이므로 js에서 사용 불가
+// document는 index.html전체를 받는 객체이므로 js에서 사용 불가
 // document.write(xhr.responseText);
 //div HTMLElement 받기 
 // const title = document.querySelector("#title")
