@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      window.onload = function () {
+        /* firebaseJSTest1.html에서 로그인 성공하면 index.html페이지로 이동처리함 */
+        /* 이 때 쿼리스트링에 snapshot안에 user에 uid, displayName, email등등 존재 */
+        /* 여기서 displayName만 꺼내서 전달받음 */
+        /* location 객체는 window의 자손 객체로 URL에 관한 모든 정보를 관리하는 API이다. */
+        /* 그래서 firebaseJSTest1.html에서 넘겨받는 정보를 알 수 있다. - 매번 달라지니까 */
+        const queryString = new URLSearchParams(window.location.search);
+        /* URLSearchParams 객체 생성 후 이 API가 제공하는 get 함수의 파라미터로  queryString의 key값을 넘김 - 대소문자 주의... undefinded로 false가 됨*/
+        /* 페이지 흐름에 영향을 주는 인자값이다. */
+        const displayName = queryString.get('displayName');
+
+        console.log(displayName);
+    };
+    </script>
+    <h2>GYM Main</h2>
+    <button id="btnLogout">로그아웃</button>
+  </body>
+</html>

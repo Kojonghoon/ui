@@ -10,7 +10,6 @@
             해결방법 : 순서지향적인 처리
             DOM구성이 완료된 후에 html문서의 태그정보를 접근하려면 defer를 붙임
             이유는 코딩 순서대로 진행되기 때문에
-
     -->
     <script defer src="./board.js"></script>
     <link rel="stylesheet" href="./board.css" />
@@ -37,7 +36,7 @@
           if (xhrObject.status == 200) {
             // 응답이 정상 처리 됨
             const newTotal = xhrObject.responseText;  //새로받아온 값임
-            console.log("newTotal : " + newTotal);
+            console.log("newTotal(보드판매량) : " + newTotal);
             const boardSoldEl = document.querySelector("#boardSold");
             //구매가
             const costEl = document.querySelector("#cost");
@@ -48,8 +47,8 @@
             //보드 1개당 마진 금액
             let cashPerBoard = price - cost;
             let cash = cashPerBoard * newTotal;
-            console.log("cashPerBoard : " + cashPerBoard);
-            console.log("cash : " + cash);
+            console.log("cashPerBoard(이익) : " + cashPerBoard);
+            console.log("cash(마진금액) : " + cash);
             console.log("마진금액은 : " + cash);
 
             const cashEl =document.querySelector('#cash')

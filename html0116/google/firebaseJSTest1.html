@@ -1,37 +1,118 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>구글로그인-[모듈화 사용:type="module"]</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- type=text/javascript 사용하는 경우와 module사용 경우 호환이 안되는 부분이 발생 -->
     <!-- ECMAScript6 기준으로 작업하는가? 와 WWW CommonJS기준으로 작업하는가? -->
     <script type="module">
-        import {firebaseApp} from "../service/firebase.js"
-        import AuthLogic from "../service/authLogic.js"
-
-        console.log(firebaseApp);
-        const authLogic = new AuthLogic();
-        console.log(authLogic);
-        const btnGoogle =document.querySelector("#btnGoogle")
-        btnGoogle.addEventListener('click',(e)=>{
-            /* button태그 사용시에 디폴트 타입이 submit이어서 폼 전송이 일어나게 되며
+      import { firebaseApp } from "../service/firebase.js";
+      import AuthLogic from "../service/authLogic.js";
+      console.log(firebaseApp);
+      const authLogic = new AuthLogic();
+      console.log(authLogic);
+      const btnGoogle = document.querySelector("#btnGoogle");
+      btnGoogle.addEventListener("click", (e) => {
+        /* button태그 사용시에 디폴트 타입이 submit이어서 폼 전송이 일어나게 되며
             이럴 경우 해당 페이지가 리플레쉬가 발생함에 따라 이상 동작이 발생하므로 반드시
             button태그로 click이벤트 처리시에는 주의할것
             */
-            e.preventDefault(); //submit방지 용으로 추가할 것
-            // console.log(e.target + e.currentTarget);
-            authLogic.login("Google").then((snapshot) => {
-                console.log(snapshot)
-            })
-        })
-
+        e.preventDefault(); //submit방지 용으로 추가할 것
+        // console.log(e.target + e.currentTarget);
+        authLogic.login("Google").then((snapshot) => {
+          console.log(snapshot);
+          //구글 서버에서 응답으로 받은 정보를 문자열로 변환
+          const temp = JSON.stringify(snapshot);
+          //위에서 변환된 정보를 배열로 변환
+          const jsonDoc = JSON.parse(temp);
+          //uid - 구글에서 할당되는 아이디값 - 이게 바뀌면 다른 사람임
+          //displayName - 구글 계정이름
+          //email - 구글 계정 이메일
+          console.log(jsonDoc.user.displayName);
+        });
+      }); //end of btnGoogle
+      const moveMain = (displayName) => {
+        console.log("moveMain : " + displayName);
+        window.location.href = "./index.html?displayName=" + displayName;
+      };
+      authLogic.onAuthChange((user) => {
+        console.log("onAuthChange : " + user.displayName);
+        // user && moveMain(user.displayName);
+        user.displayName && document.write('<a href = "javascript:signOut();" >로그아웃</a>')
+      });
+      function signOut(){
+        console.log("로그아웃");
+        authLogic.logout();
+      }
     </script>
     <button id="btnGoogle">구글로그인</button>
-</body>
+  </body>
 </html>
 
-<!-- http://localhost:5500/google/firebaseJSTest1.html -->
+<!-- http://localhost:5500/google/firebaseJSTest1.html 
+
+        533347576188-afsd26br4o3kc6mf66ak5ntiip749576.apps.googleusercontent.com
+        snapshot
+
+user
+: 
+Ae
+accessToken
+: 
+"eyJhbGciOiJSUzI1NiIsImtpZCI6IjVhNTA5ZjAxOWY3MGQ3NzlkODBmMTUyZDFhNWQzMzgxMWFiN2NlZjciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoi6rOg7KKF7ZuIIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDZrSnBPclVuNUVUVUM1X1RkMlpLQi0tbE9STjljZHZud0gwZEoxPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2NvcmFsLWFudG9ueW0tMzcyMTAxIiwiYXVkIjoiY29yYWwtYW50b255bS0zNzIxMDEiLCJhdXRoX3RpbWUiOjE2NzU4MTIzMzUsInVzZXJfaWQiOiJOVlJRTHIzSjE2ZVpuOHBzSjdGZDdDOW1odEIzIiwic3ViIjoiTlZSUUxyM0oxNmVabjhwc0o3RmQ3QzltaHRCMyIsImlhdCI6MTY3NTgxMjMzNSwiZXhwIjoxNjc1ODE1OTM1LCJlbWFpbCI6ImR1aTcyNzJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDI3NjkzOTcwMzkyNTA0NTIyODgiXSwiZW1haWwiOlsiZHVpNzI3MkBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.XlpzJl23h0Tu8AmkhjxPevlCBSJtuo_tdze3Kfk1i1xAjc6IHS84xm190MvlvXICczRrSYgHhlS1q4Co4dfEvBBSiiD_lTA1QIgCuyrP1izPVr1YKn3Ydu3eGOF00AlHhHjt46ikm6Ykwr8fp-BdV_nSLhA_GtQTTP0_ifHjGJe4PLprSgx1xnnr9G3ZQJcNxxrNCoemBRQn9cDKfaxfaMmmqs695gbH0PP10WsQgLjw_x5O63z4cwjsdZ2nIU4uCAm4daIfIe1yjnC7m1rbFl06dbVImxONY147WhCM4fRcMtKA0o7s4qxYnKAiPYl4zCk405tWgJPMSZmJvus-WA"
+auth
+: 
+We {app: FirebaseAppImpl, heartbeatServiceProvider: Provider, config: {…}, currentUser: Ae, emulatorConfig: null, …}
+displayName
+: 
+"고종훈"
+email
+: 
+"dui7272@gmail.com"
+emailVerified
+: 
+true
+isAnonymous
+: 
+false
+metadata
+: 
+Te {createdAt: '1675740138716', lastLoginAt: '1675812335483', lastSignInTime: 'Tue, 07 Feb 2023 23:25:35 GMT', creationTime: 'Tue, 07 Feb 2023 03:22:18 GMT'}
+phoneNumber
+: 
+null
+photoURL
+: 
+"https://lh3.googleusercontent.com/a/AEdFTp6kJpOrUn5ETUC5_Td2ZKB--lORN9cdvnwH0dJ1=s96-c"
+proactiveRefresh
+: 
+ye {user: Ae, isRunning: false, timerId: null, errorBackoff: 30000}
+providerData
+: 
+[{…}]
+providerId
+: 
+"firebase"
+reloadListener
+: 
+null
+reloadUserInfo
+: 
+{localId: 'NVRQLr3J16eZn8psJ7Fd7C9mhtB3', email: 'dui7272@gmail.com', displayName: '고종훈', photoUrl: 'https://lh3.googleusercontent.com/a/AEdFTp6kJpOrUn5ETUC5_Td2ZKB--lORN9cdvnwH0dJ1=s96-c', emailVerified: true, …}
+stsTokenManager
+: 
+ke {refreshToken: 'APJWN8cxMatamR_Nijy6HUbtmqDciTfZt36ddH-p0H5wP51YYv…mBv34lOgEmtRBNGqrHF3B6XqW3stjDSnu46lJy21rn8BaC5JE', accessToken: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjVhNTA5ZjAxOWY3MGQ3Nz…hCM4fRcMtKA0o7s4qxYnKAiPYl4zCk405tWgJPMSZmJvus-WA', expirationTime: 1675815938123}
+tenantId
+: 
+null
+uid
+: 
+"NVRQLr3J16eZn8psJ7Fd7C9mhtB3"
+refreshToken
+: 
+(...)
+-->
