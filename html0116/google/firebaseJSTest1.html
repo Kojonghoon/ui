@@ -39,13 +39,21 @@
         console.log("moveMain : " + displayName);
         window.location.href = "./index.html?displayName=" + displayName;
       };
+      //구글 서버에서 상태값의 변화를 체크하고 자동으로 호출해줌
+      //개발자가 호출하는 함수가 아님
+      //파라미터user가 바뀌면 자동으로 호출된다는 것임
       authLogic.onAuthChange((user) => {
-        console.log("onAuthChange : " + user.displayName);
-        // user && moveMain(user.displayName);
-        user.displayName && document.write('<a href = "javascript:signOut();" >로그아웃</a>')
+        //아래 구문분석 필수 - 리액트에서 빈번
+        // console.log("onAuthChange : " + user.displayName);
+        user&&moveMain(user.displayName);
+        // user.displayName && document.write('<a href = "javascript:signOut();" >로그아웃</a>')
       });
       function signOut(){
         console.log("로그아웃");
+        //import문 사용시 주으 ㅣ할 것은 반드시 type = module추가할 것
+        //text/javascript와 module 사이에는 호환이 안됨0 고려한 코딩 전개할 것
+        //그럴 경우 유일한 해결 방법은 직접 함수 호출이 안되고
+        //태그의 아이디를 사용하여 addEventListener로 함수 처리할 것
         authLogic.logout();
       }
     </script>

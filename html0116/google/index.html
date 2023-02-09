@@ -8,6 +8,7 @@
   </head>
   <body>
     <script>
+      //window의 onload 이벤트는 브라우저가 dom구성이 완료(준비, 읽었을 때 -defer) 되었을 때
       window.onload = function () {
         /* firebaseJSTest1.html에서 로그인 성공하면 index.html페이지로 이동처리함 */
         /* 이 때 쿼리스트링에 snapshot안에 user에 uid, displayName, email등등 존재 */
@@ -17,12 +18,26 @@
         const queryString = new URLSearchParams(window.location.search);
         /* URLSearchParams 객체 생성 후 이 API가 제공하는 get 함수의 파라미터로  queryString의 key값을 넘김 - 대소문자 주의... undefinded로 false가 됨*/
         /* 페이지 흐름에 영향을 주는 인자값이다. */
-        const displayName = queryString.get('displayName');
-
+        const displayName = queryString.get("displayName");
         console.log(displayName);
-    };
+
+    }
     </script>
-    <h2>GYM Main</h2>
-    <button id="btnLogout">로그아웃</button>
+    <h2>터짐메인페이지</h2>
+    <!--버튼 태그 사용시에는 submit 이슈가 있어서
+    반드시 event.preventDefault() 호출 할 것 -->
+    <button id="btnLogout"> log out</button>
+    <script type="module">
+        import {firebaseApp} from '../service/firebase.js'
+        import AuthLogic from '../service/authLogic.js'
+        const authLogic = new AuthLogic();
+        const btnLogout = document.querySelector("#btnLogout")
+        btnLogout.addEventListener('click', (event)=>{
+        event.preventDefault();
+        authLogic.logout()
+        window.location.href="./firebaseJSTest1.html"
+
+})
+    </script>
   </body>
 </html>
