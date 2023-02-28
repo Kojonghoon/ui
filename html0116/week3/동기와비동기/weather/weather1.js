@@ -4,7 +4,7 @@ const getWeather = (local, callback)=>{
     fetch(`https://api.openweathermap.org/data/2.5/weather?appid=${weatherKey}&q=${local}&units=metric`)
         .then(response=> response.json())
         .then(response=>{
-            console.log(response)   
+            console.log(response)
             callback()
         });
 };

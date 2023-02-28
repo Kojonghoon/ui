@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    * {
+    box-sizing: border-box; 
+    width: 180px;
+    }
+    label {
+    font-size : 20px;
+    }
+
+    div{
+            width : 600px;
+            height : 400px;
+    } 
+    button{
+        margin: 0px;
+    }
+    #mem_id{
+        margin-left: 65px;
+    }
+    #mem_pw{
+        margin-left: 45px;
+    }
+    .repeat{
+        width: 80px;
+    }
+    .initial{
+        width: 80px;
+    }
+    .mem{
+        width: 80px;
+    }
+</style>
+</head>
+<body>
+    <script>
+        function idCheck() {
+          let regex = /^[a-z][a-z0-9-_][\\!\\@\\#]{5,11}$/;
+          let input = document.querySelector("input[name=memberId]");
+          const rep = document.getElementById("rep");
+          let notice = input.nextElementSibling;
+          if (regex.test(input.value)) {
+            alert("사용가능한 Id입니다.");
+            document.getElementById("mem_id").style.backgroundColor = "green";
+          }
+          else {
+              alert("첫글자는 영어 소문자로 시작하고 숫자, !, @, # 로만 이루어진 6~12글자 사이 로 작성하세요");
+            document.getElementById("mem_id").style.backgroundColor = "red";
+          }
+        }
+    
+        function join() {
+            let check1 = document.querySelector('input[name="radio"]').checked;
+            let checkval = document.querySelector('input[name="location"]:checked').value;
+            console.log(checkval);
+            let notice = input.nextElementSibling;
+            if (check.test(input.value)) {
+                notice.textContent = "";
+                return true;
+            }
+          else {
+            alert("지역을 선택해 주세요");
+            return false;
+          }
+        }
+        
+    </script>
+        <fieldset>
+            <legend>회원 가입 양식</legend>
+            <div>
+                <label class="id">아이디</label>
+                <input type="text" id="mem_id" name="memberId">
+                <button id="rep" class="repeat" onclick="idCheck()">중복확인</button>
+                <br/>
+                <br/>
+                <label class="pw">비밀번호</label>
+                <input type="text" id="mem_pw" name="memberPw">
+                <br/>
+                <br/>
+                <label class="checkpw">비밀번호 확인</label>
+                <input type="text" id="mem_checkpw" name="memberPw2">
+                <br/>
+                <br/>
+
+                <label class="loc">지역</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                서울 <input type="radio" id="seoul" name="location" style="height: 15px; width: 20px;">
+                부산 <input type="radio" id="busan" name="location" style="height: 15px; width: 20px;">
+                대구 <input type="radio" id="daegu" name="location" style="height: 15px; width: 20px;">
+                <br/>
+                <br/>
+                <ul style="height: 90px;width: 390px;padding-left: 150px;">
+                    <button type="reset"class="initial" onclick="initial()">초기화</button>
+                    <button class="mem" onclick="join()">회원가입</button>
+                </ul>
+    </div>
+</fieldset>
+</form>
+</body>
+</html>
